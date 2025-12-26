@@ -1,55 +1,48 @@
-# [PROJECT_NAME] Constitution
-<!-- Example: Spec Constitution, TaskFlow Constitution, etc. -->
+<!--
+Sync Impact Report:
+Version change: N/A (initial version) → 1.0.0
+List of modified principles: N/A (initial version)
+Added sections: All principles and sections are new additions
+Removed sections: None (initial version)
+Templates requiring updates:
+- ✅ .specify/templates/plan-template.md - Constitution Check section will automatically use new principles
+- ✅ .specify/templates/spec-template.md - No specific constitution references to update
+- ✅ .specify/templates/tasks-template.md - No specific constitution references to update
+Follow-up TODOs: None
+-->
+
+# Claude Skill Creator Constitution
 
 ## Core Principles
 
-### [PRINCIPLE_1_NAME]
-<!-- Example: I. Library-First -->
-[PRINCIPLE_1_DESCRIPTION]
-<!-- Example: Every feature starts as a standalone library; Libraries must be self-contained, independently testable, documented; Clear purpose required - no organizational-only libraries -->
+### Specification Fidelity
+Always follow https://code.claude.com/docs/en/skills as the authoritative source. Never invent unsupported fields, formats, or behaviors. Enforce correct SKILL.md structure, YAML frontmatter, and directory layout.
 
-### [PRINCIPLE_2_NAME]
-<!-- Example: II. CLI Interface -->
-[PRINCIPLE_2_DESCRIPTION]
-<!-- Example: Every library exposes functionality via CLI; Text in/out protocol: stdin/args → stdout, errors → stderr; Support JSON + human-readable formats -->
+### Clarity Over Assumptions
+Do not guess user intent. Ask concise, targeted clarifying questions when requirements are incomplete. Prefer explicit confirmation before generating final skill artifacts.
 
-### [PRINCIPLE_3_NAME]
-<!-- Example: III. Test-First (NON-NEGOTIABLE) -->
-[PRINCIPLE_3_DESCRIPTION]
-<!-- Example: TDD mandatory: Tests written → User approved → Tests fail → Then implement; Red-Green-Refactor cycle strictly enforced -->
+### Skill-First Thinking
+Focus on reusable, composable, and well-scoped skills. Encourage single-responsibility design. Avoid bloated instructions or multi-purpose skills unless explicitly requested.
 
-### [PRINCIPLE_4_NAME]
-<!-- Example: IV. Integration Testing -->
-[PRINCIPLE_4_DESCRIPTION]
-<!-- Example: Focus areas requiring integration tests: New library contract tests, Contract changes, Inter-service communication, Shared schemas -->
+### Deterministic Output
+Produce predictable, repeatable outputs. Use consistent templates for SKILL.md, examples, and auxiliary files. Clearly separate instructions, examples, constraints, and best practices.
 
-### [PRINCIPLE_5_NAME]
-<!-- Example: V. Observability, VI. Versioning & Breaking Changes, VII. Simplicity -->
-[PRINCIPLE_5_DESCRIPTION]
-<!-- Example: Text I/O ensures debuggability; Structured logging required; Or: MAJOR.MINOR.BUILD format; Or: Start simple, YAGNI principles -->
+### Validation & Quality Enforcement
+Validate YAML syntax, required fields, and naming conventions. Flag violations and explain how to fix them. Reject incomplete or non-compliant skills rather than silently correcting them.
 
-### [PRINCIPLE_6_NAME]
+### Safe & Responsible Design
+Do not generate skills that encourage unsafe, deceptive, or policy-violating behavior. Warn users when a requested skill may be inappropriate or risky. Default to conservative, responsible usage patterns.
 
+## Additional Constraints
 
-[PRINCIPLE__DESCRIPTION]
+Technology stack requirements and compliance standards for Claude Skill development: All skills must adhere to the official Claude Skills specification, use proper YAML formatting, follow naming conventions, and implement appropriate error handling and validation. Skills must be secure, maintainable, and follow accessibility best practices.
 
-## [SECTION_2_NAME]
-<!-- Example: Additional Constraints, Security Requirements, Performance Standards, etc. -->
+## Development Workflow
 
-[SECTION_2_CONTENT]
-<!-- Example: Technology stack requirements, compliance standards, deployment policies, etc. -->
-
-## [SECTION_3_NAME]
-<!-- Example: Development Workflow, Review Process, Quality Gates, etc. -->
-
-[SECTION_3_CONTENT]
-<!-- Example: Code review requirements, testing gates, deployment approval process, etc. -->
+Review process and quality gates for skill development: All skills must undergo structural and semantic validation, pass testing requirements, follow code quality standards, and include appropriate documentation. Code reviews must verify compliance with the constitution principles. Skills require explicit user approval before finalization and distribution.
 
 ## Governance
-<!-- Example: Constitution supersedes all other practices; Amendments require documentation, approval, migration plan -->
 
-[GOVERNANCE_RULES]
-<!-- Example: All PRs/reviews must verify compliance; Complexity must be justified; Use [GUIDANCE_FILE] for runtime development guidance -->
+Constitution governs all Claude Skill development practices. All skill implementations must verify compliance with these principles. Amendments to this constitution require documentation of changes, approval from project maintainers, and a migration plan for existing skills if needed. Compliance reviews should occur during major skill releases or when new specification versions are published.
 
-**Version**: [CONSTITUTION_VERSION] | **Ratified**: [RATIFICATION_DATE] | **Last Amended**: [LAST_AMENDED_DATE]
-<!-- Example: Version: 2.1.1 | Ratified: 2025-06-13 | Last Amended: 2025-07-16 -->
+**Version**: 1.0.0 | **Ratified**: 2025-12-25 | **Last Amended**: 2025-12-25

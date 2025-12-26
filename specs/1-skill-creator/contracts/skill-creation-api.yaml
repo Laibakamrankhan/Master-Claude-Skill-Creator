@@ -1,0 +1,129 @@
+# API Contract for Claude Skill Creator
+
+openapi: 3.0.0
+info:
+  title: Claude Skill Creator API
+  version: 1.0.0
+  description: API for creating, validating, and packaging Claude Skills
+
+paths:
+  /skills:
+    post:
+      summary: Create a new Claude Skill
+      description: Generate a SKILL.md file based on user requirements
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                skill_description:
+                  type: string
+                  description: Description of the desired skill
+                skill_name:
+                  type: string
+                  description: Name for the skill (optional, can be generated)
+                additional_requirements:
+                  type: object
+                  description: Additional requirements for the skill
+      responses:
+        '201':
+          description: Skill created successfully
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  skill_path:
+                    type: string
+                    description: Path to the created SKILL.md file
+                  validation_result:
+                    $ref: '#/components/schemas/ValidationResult'
+
+  /skills/validate:
+    post:
+      summary: Validate a Claude Skill
+      description: Validate a SKILL.md file against Claude Skills specification
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                skill_path:
+                  type: string
+                  description: Path to the SKILL.md file to validate
+                skill_content:
+                  type: string
+                  description: Content of the SKILL.md file (alternative to path)
+      responses:
+        '200':
+          description: Validation completed
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ValidationResult'
+
+  /skills/package:
+    post:
+      summary: Package a Claude Skill
+      description: Package a Claude Skill into a distributable format
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                skill_path:
+                  type: string
+                  description: Path to the skill directory to package
+                output_path:
+                  type: string
+                  description: Path for the output package (optional)
+                include_supporting_files:
+                  type: boolean
+                  description: Whether to include supporting files (scripts, assets, etc.)
+      responses:
+        '200':
+          description: Package created successfully
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  package_path:
+                    type: string
+                    description: Path to the created package
+                  package_size:
+                    type: integer
+                    description: Size of the package in bytes
+
+components:
+  schemas:
+    ValidationResult:
+      type: object
+      properties:
+        is_valid:
+          type: boolean
+          description: Whether the skill passes validation
+        errors:
+          type: array
+          items:
+            type: string
+          description: List of validation errors
+        warnings:
+          type: array
+          items:
+            type: string
+          description: List of validation warnings
+        compliance_score:
+          type: number
+          description: Percentage of specification compliance (0-100)
+        suggestions:
+          type: array
+          items:
+            type: string
+          description: Suggestions for improvement
